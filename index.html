@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seth Raghu Dadhich Law Firm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="translate.js"></script>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="title-container">
+                    <h2>सेठ रघु दाधीच लॉ फर्म</h2>
+                    <h1>35+ वर्षों का कानूनी विशेषज्ञता</h1>
+                </div>
+                <div class="header-right">
+                    <select id="languageSelector" onchange="changeLanguage(this.value)" class="language-selector">
+                        <option value="hi">हिंदी</option>
+                        <option value="en">English</option>
+                    </select>
+                    <nav>
+                        <ul>
+                            <li><a href="#home">होम</a></li>
+                            <li><a href="#contact">संपर्क</a></li>
+                            <li><a href="#enquiry">पूछताछ</a></li>
+                            <li><a href="#gallery">गैलरी</a></li>
+                            <li><a href="#history">इतिहास</a></li>
+                            <li><a href="#reviews">समीक्षा</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="welcome-text">
+                <h2>Welcome to Seth Raghu Dadhich Law Firm</h2>
+                <p>Delivering expert legal solutions with trust, integrity, and experience.</p>
+                <blockquote>"Justice delayed is justice denied." - Indian Legal Maxim</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <div class="contact-details">
+                    <h3>Office Address</h3>
+                    <p>Road no 17, Kamala palace, A-34/1<br>
+                        near Shani temple, Senthi, Bapu Nagar<br>
+                        Chittorgarh, Rajasthan 312025 <br>
+                       India</p>
+                    
+                    <h3>Contact Details</h3>
+                    <p>Mobile1: +91 995 007 2319<br>
+                       Mobile2: +91 768 991 2815</p>
+                    
+                    <h3>Email & Website</h3>
+                    <p>Email: <a href="mailto:dadhich.rn@gmail.com">dadhich.rn@gmail.com</a><br>
+            
+                    <h3>Office Hours</h3>
+                    <p>Monday - Sunday: 9:00 AM - 9:00 PM<br>
+                    </p>
+                </div>
+                <div id="map">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.0404241071074!2d73.0276!3d26.2815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDE2JzUzLjQiTiA3M8KwMDEnMzkuNCJF!5e0!3m2!1sen!2sin!4v1629789456789!5m2!1sen!2sin"
+                        allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enquiry Form Section -->
+    <section id="enquiry" class="enquiry-section">
+        <div class="container">
+            <h2>Enquiry Form</h2>
+            <form action="send_email.php" method="POST" id="enquiryForm" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="Enter your 10-digit phone number">
+                    <span class="error-message" id="phone-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Enter subject of your enquiry">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Enter your message here"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Enquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+    function changeLanguage(lang) {
+        // Create a hidden div for Google Translate
+        if (!document.getElementById('google_translate_element')) {
+            const div = document.createElement('div');
+            div.id = 'google_translate_element';
+            div.style.display = 'none';
+            document.body.appendChild(div);
+        }
+
+        // Load Google Translate Script
+        if (!window.google || !window.google.translate) {
+            const script = document.createElement('script');
+            script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.head.appendChild(script);
+        }
+
+        // Initialize Google Translate
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'hi',
+                includedLanguages: 'en,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false,
+                multilanguagePage: true
+            }, 'google_translate_element');
+
+            // Wait for Google Translate to load
+            const interval = setInterval(function() {
+                const selectElement = document.querySelector('.goog-te-combo');
+                if (selectElement) {
+                    clearInterval(interval);
+                    selectElement.value = lang;
+                    selectElement.dispatchEvent(new Event('change'));
+                }
+            }, 100);
+        };
+
+        // Trigger translation
+        if (window.google && window.google.translate) {
+            const selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = lang;
+                selectElement.dispatchEvent(new Event('change'));
+            }
+        }
+    }
+
+    // Call changeLanguage with 'hi' on page load to set initial language
+    window.addEventListener('load', function() {
+        changeLanguage('hi');
+    });
+
+    function validateForm() {
+        let isValid = true;
+        const phoneRegex = /^[0-9]{10}$/;
+
+        // Phone validation (only mandatory field)
+        const phone = document.getElementById('phone');
+        const phoneError = document.getElementById('phone-error');
+        if (!phoneRegex.test(phone.value)) {
+            phoneError.textContent = 'Please enter a valid 10-digit phone number';
+            isValid = false;
+        } else {
+            phoneError.textContent = '';
+        }
+
+        return isValid;
+    }
+    </script>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2>Our Office Gallery</h2>
+            <div class="gallery-container">
+                <img src="images/gallery1.jpeg" alt="Gallery Image 1">
+                <img src="images/gallery2.jpeg" alt="Gallery Image 2">
+                <img src="images/gallery3.jpeg" alt="Gallery Image 3">
+                <img src="images/gallery4.jpeg" alt="Gallery Image 4">
+                <img src="images/gallery5.jpeg" alt="Gallery Image 5">
+                <img src="images/gallery6.jpeg" alt="Gallery Image 6">
+                <img src="images/gallery7.jpeg" alt="Gallery Image 7">
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="history-section">
+        <div class="container">
+            <h2>Adv. Raghunandan Dadhich</h2>
+            <p>With 35+ years of experience, Adv. Raghunandan Dadhich has an extensive background in legal practice. He holds the following qualifications:</p>
+            <ul>
+                <li>LLB</li>
+                <li>DLL</li>
+                <li>MBA</li>
+                <li>PGDPM</li>
+                <li>MCom</li>
+                <li>MA</li>
+                <li>SI LSGD</li>
+                <li>Assessor</li>
+                <li>First Aid Certified</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <h2>Client Testimonials</h2>
+            <div class="reviews-container">
+                <blockquote>"This firm provided expert legal advice and was instrumental in solving our case."</blockquote>
+                <blockquote>"Highly professional, attentive, and reliable!"</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Seth Raghu Dadhich Law Firm. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
